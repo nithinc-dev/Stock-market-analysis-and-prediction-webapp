@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Provides a Chart based analysis upto 7 years</h1>
+<div class="home-bg">
+
+    <div class="container "> 
+    <div class="form-control">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">View Chart</button>
+        </form>
+    </div>
+
+    {% if timestamps and close_prices %}
+    <h3>market trend: {{trend}}</h3>
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <script>
+        
+        // Parse the JSON data from Django context
+        const xValues = JSON.parse('{{ timestamps|escapejs }}');
+        const yValues = JSON.parse('{{ close_prices|escapejs }}');
+
+        // Create a new chart
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,248,0,1.0)", // Dark black graph points
+                    borderColor: "rgba(0,240,0,1.0)",    // Dark black graph line
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontColor: "rgba(0,0,0,1.0)", // Dark black x-axis labels
+                            fontStyle: 'bold',           // Make x-axis labels bold
+                            fontWeight: 'bold'          // Make x-axis labels thick
+                        },
+                        gridLines: {
+                            color: "rgba(0,0,0,0.4)"    // Light black x-axis grid lines
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            min: Math.min(...yValues),
+                            max: Math.max(...yValues),
+                            fontColor: "rgba(0,0,0,1.0)", // Dark black y-axis labels
+                            fontStyle: 'bold',           // Make y-axis labels bold
+                            fontWeight: 'bold'          // Make y-axis labels thick
+                        },
+                        gridLines: {
+                            color: "rgba(0,0,0,0.4)"    // Light black y-axis grid lines
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    {% endif %}
+</div></div>
+{% endblock %}

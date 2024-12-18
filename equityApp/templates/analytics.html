@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Stock Analysis{% endblock %}
+
+{% block content %}
+<div class="home-bg">
+  <div class="overlay">
+    <div class="container text-center">
+      <div class="content">
+        <h1>Analytics section</h1>
+        <p>Discover Insights and Analysis. Your Ultimate Stock Market Directory.</p>
+        <p>At StockHub, we bring together comprehensive stock data and analysis tools. Whether you're looking to predict stock trends, view market status, or access financial news, you've come to the right place.</p>
+        <p>Get the stock data after</p>
+        <div class="buttons">
+            <button><a href="/linear" color: #fff;>Machine Learning Prediction</a></button>
+        </div><hr>
+        <h4>Explore Market Data</h4>
+        <p>Browse through detailed market data and insights. 
+            View trends, analyze market behavior, and make informed investment decisions.</p>
+            <div class="buttons">
+                <button><a href="/market_status" color: #fff; >View Markets</a></button>
+                <button><a href="/news" color: #fff; >Get News</a></button>
+            </div>
+        <hr>
+        
+    
+        <h4>View Market Trends</h4>
+        <p>Get inspired by in-depth market analysis and trends. 
+        Whether it's stock price movements, market indices, or sector analysis, 
+        you'll find valuable insights to guide your investment strategy.</p>
+        <hr>
+        <br>
+        <h4>Chart analysis</h4>
+        
+        <div class="buttons">
+            <button><a href="/market" color: #fff;> Graph Analysis </a></button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

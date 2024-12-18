@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Stocks - Stock Chat App{% endblock %}
+
+{% block content %}
+<div class="home-bg">
+    {% comment %} <div class="overlay"> {% endcomment %}
+      <div class="container text-center">
+        <div class="content">
+<h1>Stocks</h1>
+<ul class="custom-list">
+{% for stock in stocks %}
+    <li><a href="{% url 'stock_chat' stock.id %}">{{ stock.keyword }}</a></li>
+{% empty %}
+    <li>No stocks available.</li>
+{% endfor %}
+</ul>
+</div></div></div>
+{% comment %} </div> {% endcomment %}
+{% endblock %}

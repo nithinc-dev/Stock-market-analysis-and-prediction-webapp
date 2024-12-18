@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>News</h1>
+    <div class="container">
+        {% if form%}
+        <div class="form-control">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Get News!</button>
+            </form>
+        </div>
+        {%endif%}
+
+        {% if company_name%}
+        <h1>Latest News for {{ company_name }}</h1>
+        {% if articles %}
+            <ul>
+                {% for article in articles %}
+                    <li>
+                        <h2>{{ article.title }}</h2>
+                        <p>{{ article.description }}</p>
+                        <p>Published at: {{ article.publishedAt }}</p>
+                        <a href="{{ article.url }}" target="_blank">Read more</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No news found for {{ company_name }}</p>
+        {% endif %}
+        {%endif%}
+    </div>
+{% endblock %}

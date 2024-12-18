@@ -1,0 +1,19 @@
+<div id="messages-container">
+    {% for message in messages %}
+        <p>
+            <strong>{{ message.user.email }}</strong> 
+            <span>({{ message.timestamp|date:"Y-m-d H:i" }})</span>: 
+            {{ message.content }}
+        </p>
+    {% empty %}
+        <p class="no-messages">No messages yet.</p>
+    {% endfor %}
+</div>
+
+{% comment %} <div id="messages-container">
+    {% for message in messages %}
+        <p><strong>{{ message.user.email }}</strong> ({{ message.timestamp|date:"Y-m-d H:i" }}): {{ message.content }}</p>
+    {% empty %}
+        <p>No messages yet.</p>
+    {% endfor %}
+</div> {% endcomment %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="home-bg">
+
+    <div class="container "> 
+
+    <div class="form-control">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Predict price</button>
+        </form>
+    </div>
+
+    {% if future_price %}
+
+    <h3>{{future_date}}</h3>
+    <h3>{{future_price}}</h3>
+
+    {%endif%}
+</div>
+</div>
+
+{%endblock%}

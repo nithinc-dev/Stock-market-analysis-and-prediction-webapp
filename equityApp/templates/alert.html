@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Enter email to get alerts</h1>
+
+<div class="container">
+    <p>The entered price should be less than actual price</p>
+    {% if form%}
+    <div class="form-control">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Get email updates</button>
+        </form>
+    </div>
+    {%endif%}
+
+    {% if message %}
+    <h1>{{message}}</h1>
+    {%endif%}
+</div>
+{% endblock %}
+
+

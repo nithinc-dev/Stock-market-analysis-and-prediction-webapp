@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="home-bg">
+
+    <div class="container "> 
+    <div class="form-control">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">View Chart</button>
+        </form>
+    </div>
+
+    {% if timestamps and close_prices %}
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <script>
+        // Parse the JSON data from Django context
+        const xValues = JSON.parse('{{ timestamps|escapejs }}');
+        const yValues = JSON.parse('{{ close_prices|escapejs }}');
+
+        // Create a new chart
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,248,0,1.0)", // Dark black graph points
+                    borderColor: "rgba(0,240,0,1.0)",    // Dark black graph line
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontColor: "rgba(0,0,0,1.0)", // Dark black x-axis labels
+                            fontStyle: 'bold',           // Make x-axis labels bold
+                            fontWeight: 'bold'          // Make x-axis labels thick
+                        },
+                        gridLines: {
+                            color: "rgba(0,0,0,0.4)"    // Light black x-axis grid lines
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            min: Math.min(...yValues),
+                            max: Math.max(...yValues),
+                            fontColor: "rgba(0,0,0,1.0)", // Dark black y-axis labels
+                            fontStyle: 'bold',           // Make y-axis labels bold
+                            fontWeight: 'bold'          // Make y-axis labels thick
+                        },
+                        gridLines: {
+                            color: "rgba(0,0,0,0.4)"    // Light black y-axis grid lines
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    {% endif %}
+</div></div>
+{% endblock %}
+
+
+{% comment %} 
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="home-bg">
+<div class="container text-center">
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <script>
+        // Parse the JSON data from Django context
+        const xValues = JSON.parse('{{ timestamps|escapejs }}');
+        const yValues = JSON.parse('{{ close_prices|escapejs }}');
+
+        // Create a new chart
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,250,0,1.0)", // Dark black graph points
+                    borderColor: "rgba(0,250,0,1.0)",    // Dark black graph line
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontColor: "rgba(0,0,0,1.0)" // Dark black x-axis labels
+                        },
+                        gridLines: {
+                            color: "rgba(0,0,0,0.4)" // Light black x-axis grid lines
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            min: Math.min(...yValues),
+                            max: Math.max(...yValues),
+                            fontColor: "rgba(0,0,0,1.0)" // Dark black y-axis labels
+                        },
+                        gridLines: {
+                            color: "rgba(0,0,0,0.4)" // Light black y-axis grid lines
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</div></div>
+{% endblock %} {% endcomment %}
+
+
+
+{% comment %} {% extends 'base.html' %}
+{%block content%}
+
+<div class="home-bg">
+<div class="container text-center">
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <script>
+        // Parse the JSON data from Django context
+        const xValues = JSON.parse('{{ timestamps|escapejs }}');
+        const yValues = JSON.parse('{{ close_prices|escapejs }}');
+
+        // Create a new chart
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,230,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    yAxes: [{ ticks: { min: Math.min(...yValues), max: Math.max(...yValues) } }],
+                }
+            }
+        });
+    </script>
+</div></div>
+{%endblock%} {% endcomment %}
+
+
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Data Visualization</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <script>
+        // Parse the JSON data from Django context
+        const xValues = JSON.parse('{{ timestamps|escapejs }}');
+        const yValues = JSON.parse('{{ close_prices|escapejs }}');
+
+        // Create a new chart
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,230,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    yAxes: [{ ticks: { min: Math.min(...yValues), max: Math.max(...yValues) } }],
+                }
+            }
+        });
+    </script>
+</body>
+</html> {% endcomment %}
+
+
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Stock Data Visualization</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+    <script>
+        // Get the data from Django context
+        const xValues = {{ timestamps|safe }};
+        const yValues = {{ close_prices|safe }};
+
+        // Create a new chart
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    fill: false,
+                    lineTension: 0,
+                    backgroundColor: "rgba(0,0,255,1.0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                legend: { display: false },
+                scales: {
+                    yAxes: [{ ticks: { min: 6, max: 16 } }],
+                }
+            }
+        });
+    </script>
+</body>
+</html> {% endcomment %}

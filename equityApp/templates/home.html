@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Stock Analysis App{% endblock %}
+
+{% block content %}
+
+<div class="home-bg">
+    <div class="overlay">
+      <div class="container text-center">
+        <div class="content">
+<h1>Welcome to Stock Analysis App</h1>
+<p>Discover Insights and Analysis. Your Ultimate Stock Market Directory.</p>
+        <p>At StockHub, we bring together comprehensive stock data and analysis tools. Whether you're looking to predict stock trends, view market status, or access financial news, you've come to the right place.</p>
+        <p>Get the stock data after</p>
+{% if user.is_authenticated %}
+    <p>Hello, {{ user.email }}! <a href="{% url 'stock_list' %}">View Stocks</a></p>
+    <hr>
+    <h3>Analyze stock market</h3>
+    <div class="buttons">
+        <button><a href="/analytics" color: #fff;>Analyze</a></button>
+    </div>
+    <br><hr>
+    <h3>Start Chat</h3>
+    <div class="buttons">
+        <button><a href="/stocks" color: #fff;>Chat</a></button>
+    </div>
+    <br><hr>
+
+    <h3>Get Email Updates</h3>
+    <div class="buttons">
+        <button><a href="/stocks" color: #fff;>Get Alerts</a></button>
+    </div>
+    <br><hr>
+   
+{% else %}
+    <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">sign up</a> to start chatting.</p>
+{% endif %}
+
+</div>
+</div>
+</div></div>
+{% endblock %}
